@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public float speed 10f;
+    public float speed = 10f;
     public float jumpHeight = 7f;
     private Rigidbody2D body;
     private Animator anim;
@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour {
     // Start is called before the first frame update
     void Awake()
     {
-        body = GetComponent<RigidBody2D0>();
+        body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
         
-        if(input.GetKey(KeyCode.Space)&&grounded){
+        if(Input.GetKey(KeyCode.Space)&&grounded){
             Jump();
         }
     }
