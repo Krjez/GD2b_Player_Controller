@@ -32,8 +32,31 @@ public class AdvancedPlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void FixedUpdate(){
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        float horizontalInput = Input.GetAxisRaw("Horizonzal");
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.x);
+        anim.SetBool("walk", horizontalInput != 0);
+
+        if((horizontalInput > 0 && !isFacingRight) || (horizontalInput < 0 && isFacingRight)){
+            Flip();
+        }
+
+        if((Input.GetKey(KeyCode.Space){
+            Jump();
+        }
+
+    }
+
+
+    private void Flip() {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+        isFacingRight = !isFacingRight;
+    }
+
+    private void Jump() {
+        body.velocity = new Vector2.
     }
 }
