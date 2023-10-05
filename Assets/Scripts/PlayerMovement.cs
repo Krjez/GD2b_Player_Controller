@@ -27,6 +27,10 @@ public class PlayerMovement : MonoBehaviour {
         if(Input.GetKey(KeyCode.Space)&&grounded){
             Jump();
         }
+
+        if((horizontalInput > 0 && !facingRight)||(horizontalInput < 0 && facingRight)){
+            Flip();
+        }
     }
 
     private void Jump(){
@@ -38,6 +42,13 @@ public class PlayerMovement : MonoBehaviour {
         if(other.gameObject.CompareTag("Ground")){
             grounded = true;
         }
+    }
+
+    private void Flip() {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+        facingRight = !facingRight;
     }
 
 }
